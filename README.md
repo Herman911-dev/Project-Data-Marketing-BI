@@ -29,6 +29,20 @@ Le dashboard interactif permet de filtrer les données par segment et d'analyser
 
 ---
 
+## Robustesse, Limites & Risques
+* **Gouvernance :** Le modèle de scoring montre une précision de 85% sur le jeu de test. 
+* **Risques :** L'ancienneté des données (comportements pré-2024) peut biaiser les prédictions face à l'inflation actuelle.
+* **Amélioration :** Une industrialisation via une API (FastAPI) permettrait de scorer les nouveaux clients en temps réel.
+
+---
+
+## Recommandations Business Finales
+1. **Focus VIP :** Allouer 60% du budget marketing sur le segment "Épicuriens VIP" avec des offres exclusives sur les vins premium.
+2. **Relance Web :** Améliorer l'UX du site pour le segment "Jeunes Prudents" afin de transformer leur navigation en achat réel.
+3. **Cross-Selling :** Développer des bundles "Vin & Viande" pour augmenter le panier moyen des "Seniors Budgétaires".
+
+---
+
 ##  Structure du Dépôt
 * `/data` : Jeu de données marketing final.
 * `/notebooks` : Analyse exploratoire et modèle de Machine Learning.
