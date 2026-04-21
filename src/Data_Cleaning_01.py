@@ -2,8 +2,7 @@
 
 import pandas as pd
 
-
-# Constantes globales (écrites en majuscules avec underscores)
+# Constantes globales 
 INPUT_PATH = "../data/marketing_campaign.csv"
 OUTPUT_PATH = "../data/marketing_campaign_cleaned.csv"
 
@@ -17,7 +16,7 @@ def clean_marketing_data(df):
     Returns:
         pd.DataFrame: Le DataFrame nettoyé.
     """
-    # Imputation du revenu par la médiane (Antibug : gestion des valeurs manquantes)
+    # Imputation du revenu par la médiane 
     df["Income"] = df["Income"].fillna(df["Income"].median())
 
     # Suppression des outliers d'âge
@@ -39,7 +38,7 @@ def clean_marketing_data(df):
     }
     df["Living_With"] = df["Marital_Status"].replace(marital_mapping)
 
-    # Conversion de la date d'inscription (les arguments par défaut n'ont pas d'espace autour du "=")
+    # Conversion de la date d'inscription 
     df["Dt_Customer"] = pd.to_datetime(
         df["Dt_Customer"], format="mixed", dayfirst=True
     )
