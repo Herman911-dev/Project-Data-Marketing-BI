@@ -48,3 +48,4 @@ Le dashboard interactif permet de filtrer les données par segment et d'analyser
 * `/notebooks` : Analyse exploratoire et modèle de Machine Learning.
 * `/powerbi` : Fichier `.pbix` et exports PDF des analyses par segment.
 * `/src` : Script Python Automatisé.
+
