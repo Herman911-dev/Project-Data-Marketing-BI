@@ -1,51 +1,73 @@
-# Marketing Strategy & Customer Scoring - 2026
+# Data Marketing BI — Segmentation & Prédiction Client
 
-##  Objectif du Projet
-Ce projet vise à optimiser la stratégie marketing d'une entreprise en utilisant la Data Science et la Business Intelligence. L'objectif est de segmenter la base clients et de prédire le potentiel de conversion pour cibler les campagnes publicitaires de manière plus efficace.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/Machine_Learning-Scikit_Learn-F7931E.svg?logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Data_Processing-Pandas-150458.svg?logo=pandas&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Notebook-Jupyter-F37626.svg?logo=jupyter&logoColor=white)
 
----
-
-##  Stack Technique
-* **Analyse & Machine Learning :** Python (Pandas, Scikit-Learn).
-* **Algorithmes :** K-Means (Clustering) et Régression Logistique (Scoring).
-* **Visualisation :** Power BI Desktop.
-* **Gestion de version :** Git / GitHub.
+**Transformer la donnée brute en stratégie d'acquisition ciblée.** Ce projet d'Intelligence Commerciale (BI) analyse l'historique d'une base de 2 240 clients e-commerce. L'objectif est double : **segmenter** l'audience pour personnaliser les messages, et **prédire** l'appétence aux futures campagnes marketing grâce au Machine Learning afin d'optimiser le budget d'acquisition.
 
 ---
 
-##  Étapes Clés
-1. **Nettoyage des données :** Traitement des valeurs manquantes et ingénierie des variables (Feature Engineering).
-2. **Segmentation Clients (Clustering) :** Identification de 4 profils types (Épicuriens VIP, Jeunes Prudents, Seniors Budgétaires, Petits Consommateurs).
-3. **Modèle de Scoring :** Création d'un algorithme prédisant la probabilité de réponse à une campagne marketing.
-4. **Dashboard Décisionnel :** Création d'un outil interactif sous Power BI pour piloter la stratégie.
+## Problématique Business
+> *"À qui parler, avec quel message, et dans quel ordre de priorité ?"*
+
+Une entreprise dispose de milliers de lignes de transactions et de retours de campagnes. Plutôt que d'envoyer des offres de manière uniforme (et coûteuse) à toute la base, ce projet fournit un outil d'aide à la décision pour concentrer les efforts sur les clients à fort potentiel.
+
+### 💡 Chiffres Clés & Résultats
+| Indicateur | Valeur | Description |
+| :--- | :--- | :--- |
+| **Volume de données** | `2 240 clients` | Base de données analysée et nettoyée |
+| **Segments créés** | `4 profils` | Identifiés par clustering (K-Means) |
+| **Score Prédictif** | `86 % Accuracy` | Prédiction de conversion (Régression Logistique) |
+| **Création de Valeur** | `Score Marketing` | Nouveau KPI composite créé de 0 à 100 |
 
 ---
 
-##  Résultats du Dashboard
-Le dashboard interactif permet de filtrer les données par segment et d'analyser :
-* **Revenus globaux :** 1,35M€ de CA analysé.
-* **Mix Produit :** Domination du secteur Vin et Viande.
-* **Potentiel IA :** Score de conversion moyen de 14,93% (montant à +23% pour les segments VIP).
+## Pipeline Analytique & Machine Learning
+
+### Data Processing & Feature Engineering (ETL)
+Nettoyage rigoureux (`data_cleaning.py`) pour garantir la fiabilité des modèles :
+* **Imputation** des revenus manquants par la médiane.
+* **Traitement des Outliers** (suppression des dates de naissance incohérentes < 1940).
+* **Création de variables métier (Features) :** `Age`, `Total_Spent`, `Total_Purchases`, `Children_Home`, `Seniority_Days`, et le nombre d'offres acceptées (`Total_Promos`).
+* **Innovation:** Création d'un **Marketing Potential Score (0-100)** pondérant le volume de dépenses (70%) et la réactivité historique (30%).
+
+### Segmentation Client (K-Means Clustering)
+Utilisation de la méthode du coude (*Elbow Method*) pour déterminer `k=4`.
+* **Épicuriens VIP :** Revenu élevé, fort panier, peu d'enfants. *Le moteur de rentabilité.*
+* **Seniors Budgétaires :** Clients fidèles mais contraints par des charges familiales.
+* **Jeunes Prudents :** Faible revenu, dépenses contenues mais fort potentiel de croissance.
+* **Petits Consommateurs :** Peu engagés, très faible réactivité aux campagnes.
+
+### Modélisation Prédictive (Régression Logistique)
+Prédiction binaire de la variable `Response` (Le client va-t-il accepter la prochaine offre ?).
+* Split stratifié 70% Train / 30% Test avec normalisation `StandardScaler`.
+* Génération d'un **score de probabilité (0 à 1)** pour trier la base et prioriser les appels/emails commerciaux.
 
 ---
 
-## Robustesse, Limites & Risques
-* **Gouvernance :** Le modèle de scoring montre une précision de 85% sur le jeu de test. 
-* **Risques :** L'ancienneté des données (comportements pré-2024) peut biaiser les prédictions face à l'inflation actuelle.
-* **Amélioration :** Une industrialisation via une API (FastAPI) permettrait de scorer les nouveaux clients en temps réel.
+## Stack Technique
+
+* **Langage :** Python
+* **Machine Learning :** `scikit-learn` (KMeans, LogisticRegression, StandardScaler)
+* **Manipulation de données :** `pandas`, `numpy`
+* **Data Visualisation :** `matplotlib`, `seaborn`
 
 ---
 
-## Recommandations Business Finales
-1. **Focus VIP :** Allouer 60% du budget marketing sur le segment "Épicuriens VIP" avec des offres exclusives sur les vins premium.
-2. **Relance Web :** Améliorer l'UX du site pour le segment "Jeunes Prudents" afin de transformer leur navigation en achat réel.
-3. **Cross-Selling :** Développer des bundles "Vin & Viande" pour augmenter le panier moyen des "Seniors Budgétaires".
+## Structure du Projet
 
----
-
-##  Structure du Dépôt
-* `/data` : Jeu de données marketing final.
-* `/notebooks` : Analyse exploratoire et modèle de Machine Learning.
-* `/powerbi` : Fichier `.pbix` et exports PDF des analyses par segment.
-* `/src` : Script Python Automatisé.
-
+```text
+Project-Data-Marketing-BI/
+├── data/
+│   ├── marketing_campaign.csv          # Dataset brut source
+│   ├── marketing_campaign_cleaned.csv  # Données après pipeline ETL
+│   └── Marketing_Data_Final.csv        # Export avec Segments & Scores (Prêt pour la BI)
+├── notebooks/
+│   └── exploration_nettoyage.ipynb     # Exploratory Data Analysis (EDA) & Modélisation
+├── src/
+│   ├── data_cleaning.py                # Script ETL (Nettoyage + Feature Engineering)
+│   └── model.py                        # Entraînement ML (Clustering + Classification)
+├── requirements.txt                    # Dépendances du projet
+└── README.md

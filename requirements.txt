@@ -1,0 +1,13 @@
+# DATA PROCESSING
+pandas
+numpy
+
+# MACHINE LEARNING
+scikit-learn
+
+# VISUALIZATION
+matplotlib
+seaborn
+
+# NOTEBOOK
+jupyter
